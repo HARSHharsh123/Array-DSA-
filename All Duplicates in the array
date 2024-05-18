@@ -1,0 +1,48 @@
+// Approach 1 by hash table
+
+class Solution {
+public:
+    vector<int> findDuplicates(vector<int>& arr) {
+        unordered_map<int , int> m;
+        for(int i = 0 ; i < arr.size() ; i++){
+            m[arr[i]]++;
+        }
+        vector<int> ans;
+        for(auto pair : m){
+            if(pair.second == 2) ans.push_back(pair.first);
+        }
+        return ans;
+    }
+};
+
+//Appraoch 2 -> by Extra Array mapping concept
+
+class Solution {
+public:
+    vector<int> findDuplicates(vector<int>& arr) {
+        vector<int> ans;
+        vector<int> temp(arr.size() + 1 , false);
+        for(int i = 0 ; i < arr.size() ; i++){
+            int ele =arr[i];
+            if(temp[ele] ==  true) ans.push_back(ele);
+            else temp[ele] = true;
+        }
+        return ans;
+    }
+};
+
+// Approach 3 -> by Pigenhole Principle
+
+class Solution {
+public:
+    vector<int> findDuplicates(vector<int>& arr) {
+        vector<int> ans;
+        for(int i = 0 ;  i < arr.size() ; i++){
+            int ele = abs(arr[i]);
+            int pos = ele - 1;
+            if(arr[pos] < 0) ans.push_back(ele);
+            else arr[pos] = -arr[pos];
+        }
+        return ans;
+    }
+};
