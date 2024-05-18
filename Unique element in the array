@@ -1,0 +1,16 @@
+// Unique Element in an array
+
+#include <iostream>
+// #include<vector>
+using namespace std;
+int main()
+{
+    int arr[] = {1,1,2,2,3,4,4};
+    int n = sizeof(arr) / sizeof(int);
+    int ans = 0;
+    for(int i = 0; i < n ; i++){
+        ans = arr[i] ^ ans;
+    }
+    cout<<ans;
+    
+}
